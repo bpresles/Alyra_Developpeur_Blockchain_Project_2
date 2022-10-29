@@ -166,7 +166,7 @@ describe("Voting", () => {
         await expect(votingInstance.connect(voter1).setVote(BigNumber.from(0))).to.be.revertedWith('You\'re not a voter');
       });
 
-      it("Require - Should not allow to vote voting session hasn't started", async () => {
+      it("Require - Should not allow to vote voting session has not started", async () => {
 
         await votingInstance.addVoter(voter1.address);
         await votingInstance.connect(owner).startProposalsRegistering();
@@ -189,7 +189,7 @@ describe("Voting", () => {
         await expect(votingInstance.connect(voter1).setVote(BigNumber.from(0))).to.be.revertedWith('You have already voted');
       });
 
-      it("Require - Should not allow vote on inexisting proposal", async () => {
+      it("Require - Should not allow vote on nonexisting proposal", async () => {
 
         await votingInstance.addVoter(voter1.address);
         await votingInstance.connect(owner).startProposalsRegistering();
