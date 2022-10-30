@@ -7,21 +7,13 @@ require('solidity-coverage');
 module.exports = {
   solidity: {
     version: '0.8.17',
-    settings: {
-      outputSelection: {
-        '*': {
-          '*': ['storageLayout'],
-        },
-      },
-    },
   },
   networks: {
-    development: {
+    hardhat: {
       accounts: {
         count: 10,
         mnemonic: `${process.env.MNEMONIC}`,
       },
-      url: 'http://127.0.0.1:8545',
     },
     goerli: {
       accounts: {
@@ -30,6 +22,14 @@ module.exports = {
       },
       chainId: 5,
       url: `https://goerli.infura.io/v3/${process.env.INFURA_ID}`
+    },
+    sepolia: {
+      accounts: {
+        count: 10,
+        mnemonic: `${process.env.MNEMONIC}`,
+      },
+      chainId: 11155111,
+      url: `https://sepolia.infura.io/v3/${process.env.INFURA_ID}`
     },
     mumbai: {
       accounts: {

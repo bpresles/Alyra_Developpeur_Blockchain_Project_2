@@ -34,17 +34,22 @@ $ npm install (ou yarn install)
 
 <a name="commands"></a>
 ## Commands
-<br/>
 
 ### Compile smart contrat
 ```bash
 npx hardhat compile 
 ```
 
+### Start a local JSON-RPC node
+You can start a local JSON-RPC node to be able to interact with HardHat network using a JSON-RPC client like a wallet.
+```bash
+npx hardhat node
+```
 ### Deploy smart contrat
 ```bash
-npx hardhat (--network [network_name]) run scripts/1_deploy.js
+npx hardhat --network [network_name] run scripts/deploy_voting.js
 ```
+If no network is specified it'll use local hardhat network.
 
 ### Run tests without coverage
 ```bash
