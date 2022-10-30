@@ -20,7 +20,7 @@ jobs:
       - name: Create local node and deploy
         run: |
           npx hardhat node &
-          npx hardhat run scripts/deploy_voting.ts
+          npx hardhat run scripts/deploy_voting.js
       - name: Run Tests
         run: npx hardhat test
       - name: Run Cpverage
