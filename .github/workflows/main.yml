@@ -23,5 +23,5 @@ jobs:
           npx hardhat run scripts/deploy_voting.js
       - name: Run Tests
         run: npx hardhat test
-      - name: Run Cpverage
+      - name: Run Coverage
         run: npx hardhat coverage
