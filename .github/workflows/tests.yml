@@ -17,11 +17,10 @@ jobs:
           node-version: '16.x'
       - run: npm install
         shell: bash
-      - name: 'Create env file'
-        run: |
-          touch .env
-          echo MNEMONIC=${{ secrets.INPUT_ENV_MNEMONIC }} >> .env
-          cat .env
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_MNEMONIC: ${{ secrets.MNEMONIC }}
       - name: Run Tests
         run: npm run test
       - name: Run Coverage
