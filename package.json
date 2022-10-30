@@ -2,6 +2,16 @@
   "name": "Voting",
   "version": "1.0.0",
   "license": "MIT",
+  "scripts": {
+    "build": "npx hardhat compile",
+    "dev": "npx hardhat node", 
+    "deploy:dev": "npx hardhat run scripts/deploy_voting.js",
+    "deploy:goerli": "npx hardhat --network goerli run scripts/deploy_voting.js",
+    "deploy:sepolia": "npx hardhat --network sepolia run scripts/deploy_voting.js",
+    "deploy:mumbai": "npx hardhat --network mumbai run scripts/deploy_voting.js",
+    "test": "npx hardhat test",
+    "coverage": "npx hardhat coverage"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",

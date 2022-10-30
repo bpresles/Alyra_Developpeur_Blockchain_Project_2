@@ -29,7 +29,19 @@ To run the tests, you'll need to execute the following commands to install the r
 
 ```bash
 $ git clone https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2.git
-$ npm install (ou yarn install)
+$ npm install (or yarn install)
+```
+
+Then copy the .env.dist file as .env:
+```bash
+cp .env.dist .env
+```
+
+Edit the .env file and set your mnemonic, infura id and alchemy id:
+```bash
+MNEMONIC="YOUR_MNEMONIC"
+INFURA_ID="AN_INFURA_ID"
+ALCHEMY_ID="AN_ALCHEMY_ID"
 ```
 
 <a name="commands"></a>
@@ -37,28 +49,73 @@ $ npm install (ou yarn install)
 
 ### Compile smart contrat
 ```bash
-npx hardhat compile 
+npm run build
 ```
-
-### Start a local JSON-RPC node
-You can start a local JSON-RPC node to be able to interact with HardHat network using a JSON-RPC client like a wallet.
+or
 ```bash
-npx hardhat node
+yarn build
 ```
-### Deploy smart contrat
-```bash
-npx hardhat --network [network_name] run scripts/deploy_voting.js
-```
-If no network is specified it'll use local hardhat network.
 
 ### Run tests without coverage
 ```bash
-npx hardhat test
+npm run test
+```
+or
+```bash
+yarn test
 ```
 
 ### Run tests with coverage
 ```bash
-npx hardhat coverage
+npm run coverage
+```
+or
+```bash
+yarn coverage
+```
+### Deploy smart contrat
+
+**Local**
+```bash
+npx run deploy:dev
+```
+or
+```bash
+yarn deploy:dev
+```
+**Goerli**
+```bash
+npx run deploy:goerli
+```
+or
+```bash
+yarn deploy:goerli
+```
+
+**Sepolia**
+```bash
+npx run deploy:sepolia
+```
+or
+```bash
+yarn deploy:sepolia
+```
+**Mumbai**
+```bash
+npx run deploy:mumbai
+```
+or
+```bash
+yarn deploy:mumbai
+```
+### Start a local JSON-RPC node
+You can start a local JSON-RPC node to be able to interact with HardHat network using a JSON-RPC client like a wallet.
+```bash
+npm run dev
+```
+or
+```bash
+yarn dev
 ```
 
 <a name="tests-structure"></a>

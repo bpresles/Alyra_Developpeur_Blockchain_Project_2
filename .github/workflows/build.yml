@@ -19,9 +19,6 @@ jobs:
         shell: bash
       - run: cp .env.ci .env
         shell: bash
-      - name: Create local node and deploy
-        env: 
-          MNEMONIC: ${{ secrets.MNEMONIC }}
+      - name: Build smart contract
         run: |
-          npm run dev &
-          npm run deploy:dev
+          npm run build
