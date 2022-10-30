@@ -1,4 +1,4 @@
-name: Voting
+name: Deployment
 on:
   push:
     branches: [main]
@@ -23,7 +23,3 @@ jobs:
         run: |
           npx hardhat node &
           npx hardhat run scripts/deploy_voting.js
-      - name: Run Tests
-        run: npx hardhat test
-      - name: Run Coverage
-        run: npx hardhat coverage
