@@ -1,4 +1,4 @@
-# Voting [![Deployment](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/deploy.yml/badge.svg)](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/deploy.yml) [![Tests](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/tests.yml/badge.svg)](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/tests.yml)
+# Voting [![Build](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/build.yml/badge.svg)](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/build.yml) [![Deploy](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/deploy.yml/badge.svg)](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/deploy.yml) [![Test](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/tests.yml/badge.svg)](https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2/actions/workflows/tests.yml)
 
 ## Table of Contents
 - [Presentation](#presentation)
