@@ -1,7 +1,9 @@
-# Voting - unit tests
+# Voting
 
 ## Table of Contents
+***
 - [Presentation](#presentation)
+- [Structure](#structure)
 - [Installation](#installation)
 - [Run the tests](#run-the-tests)
 - [Tests structure](#tests-structure)
@@ -11,11 +13,22 @@
 
 <a name="presentation"></a>
 ## Presentation
-You will find here the `contracts/Voting.sol` contract and associated unit tests in `test/`.
+***
+The voting smart contract is a simple voting system for small organizations that allows to register voters, let them make proposals, vote for one proposal and then obtain the winning proposal in a simple majority manner.
+
+<a name="structure"></a>
+## Structure
+***
+The project contains the following main folders:
+
+- contracts (Solidity source file of the smart contract)
+- scripts (Deployment script)
+- test (Unit tests)
+- coverage (Coverage of tests reports)
 
 <a name="installation"></a>
 ## Installation
-
+***
 To run the tests, you'll need to execute the following commands to install the required dependencies:
 
 ```bash
@@ -23,22 +36,34 @@ $ git clone https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2.g
 $ npm install (ou yarn install)
 ```
 
-<a name="run-the-tests"></a>
-## Run the tests
+<a name="running"></a>
+## Commands
+***
 <br/>
 
-### Without coverage
+### Compile smart contrat
+```bash
+npx hardhat compile 
+```
+
+### Deploy smart contrat
+```bash
+npx hardhat (--network [network_name]) run scripts/1_deploy.js
+```
+
+### Run tests without coverage
 ```bash
 npx hardhat test
 ```
 
-### With coverage
+### Run tests with coverage
 ```bash
 npx hardhat coverage
 ```
 
 <a name="tests-structure"></a>
-## Tests structure
+## Tests
+***
 The tests are covering all the functions of the Voting contract by use case categories:
 
 - Voters management
@@ -54,7 +79,7 @@ In each category, the tests are covering the following elements:
 - Limit scenarios
 
 <a name="tests-results"></a>
-## Tests results 
+### Tests results 
 
 ```bash
   Voting
@@ -109,7 +134,7 @@ In each category, the tests are covering the following elements:
 ```
 
 <a href="gas-consumption"></a>
-## Gas consumption
+### Gas consumption
 
 ```bash
 ·------------------------------------------|----------------------------|-------------|-----------------------------·
@@ -142,7 +167,7 @@ In each category, the tests are covering the following elements:
 ```
 
 <a href="coverage"></a>
-## Coverage
+### Coverage
 
 ```bash
 |-------------|----------|----------|----------|----------|-----------------|
