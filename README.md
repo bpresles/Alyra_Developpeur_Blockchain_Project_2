@@ -1,11 +1,10 @@
 # Voting
 
 ## Table of Contents
-***
 - [Presentation](#presentation)
 - [Structure](#structure)
 - [Installation](#installation)
-- [Run the tests](#run-the-tests)
+- [Commands](#commands)
 - [Tests structure](#tests-structure)
 - [Tests results](#tests-results)
 - [Gas consumption](#gas-consumption)
@@ -13,12 +12,10 @@
 
 <a name="presentation"></a>
 ## Presentation
-***
 The voting smart contract is a simple voting system for small organizations that allows to register voters, let them make proposals, vote for one proposal and then obtain the winning proposal in a simple majority manner.
 
 <a name="structure"></a>
 ## Structure
-***
 The project contains the following main folders:
 
 - contracts (Solidity source file of the smart contract)
@@ -28,7 +25,6 @@ The project contains the following main folders:
 
 <a name="installation"></a>
 ## Installation
-***
 To run the tests, you'll need to execute the following commands to install the required dependencies:
 
 ```bash
@@ -36,9 +32,8 @@ $ git clone https://github.com/bpresles/Alyra_Developpeur_Blockchain_Project_2.g
 $ npm install (ou yarn install)
 ```
 
-<a name="running"></a>
+<a name="commands"></a>
 ## Commands
-***
 <br/>
 
 ### Compile smart contrat
@@ -63,7 +58,6 @@ npx hardhat coverage
 
 <a name="tests-structure"></a>
 ## Tests
-***
 The tests are covering all the functions of the Voting contract by use case categories:
 
 - Voters management
