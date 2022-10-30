@@ -5,7 +5,7 @@ const { ethers } = require('hardhat');
 /**
  * Tests for Voting contract.
  */
-describe("Voting", () => {
+context("Voting", () => {
     let owner;
     let voter1;
     let voter2;
@@ -17,9 +17,8 @@ describe("Voting", () => {
     votingInstance = await Voting.connect(owner).deploy();
   });
 
-  describe("Voters registration", () => {
-
-    describe('addVoter', () => {
+  context("Voters registration", () => {
+    context('addVoter', () => {
       it("Require - Should not allow adding voter if not owner", async () => {
         await expect(votingInstance.connect(voter1).addVoter(voter2.address)).to.be.revertedWith('Ownable: caller is not the owner');
       });
@@ -45,9 +44,8 @@ describe("Voting", () => {
 
   });
 
-  describe("Proposals", () => {
-
-    describe('getOneProposal', () => {
+  context("Proposals", () => {
+    context('getOneProposal', () => {
       it("Require - Should not allow to get one proposal information when caller is not voter", async () => {
         await expect(votingInstance.connect(voter1).getOneProposal(BigNumber.from(0))).to.be.revertedWith('You\'re not a voter');
       });
@@ -64,7 +62,7 @@ describe("Voting", () => {
       });
     }),
 
-    describe('addProposal/getOneProposal', () => {
+    context('addProposal/getOneProposal', () => {
       it("Require - addProposal - Should not allow to add proposal to not registered voters", async () => {
         await expect(votingInstance.connect(voter1).addProposal('Proposal 2')).to.be.revertedWith('You\'re not a voter');
       });
@@ -112,7 +110,7 @@ describe("Voting", () => {
       });
     });
 
-    describe('Workflow startProposalsRegistering/endProposalsRegistering', () => {
+    context('Workflow startProposalsRegistering/endProposalsRegistering', () => {
       it("Require - startProposalsRegistering - Should revert when called from not owner", async () => {
         await expect(votingInstance.connect(voter1).startProposalsRegistering()).to.revertedWith('Ownable: caller is not the owner');
       });
@@ -144,9 +142,9 @@ describe("Voting", () => {
 
   });
 
-  describe("Votes", () => {
+  context("Votes", () => {
 
-    describe('getVoter', () => {
+    context('getVoter', () => {
       it("Require - Should not allow to get voter information when caller is not voter", async () => {
         await expect(votingInstance.connect(voter1).getVoter(voter1.address)).to.be.revertedWith('You\'re not a voter');
       });
@@ -161,7 +159,7 @@ describe("Voting", () => {
       });
     }),
 
-    describe('setVote', () => {
+    context('setVote', () => {
       it("Require - Should not allow to vote when caller is not voter", async () => {
         await expect(votingInstance.connect(voter1).setVote(BigNumber.from(0))).to.be.revertedWith('You\'re not a voter');
       });
@@ -199,8 +197,19 @@ describe("Voting", () => {
         await expect(votingInstance.connect(voter1).setVote(BigNumber.from(1))).to.be.revertedWith('Proposal not found');
       });
 
-      it("Vote & Event - Should a registered voter to vote once and emit Voted event", async () => {
+      it("Arguments - Should revert on overflow argument value", async () => {
+        await votingInstance.connect(owner).addVoter(voter1.address);
 
+        try {
+          await votingInstance.connect(voter1).setVote(BigNumber.from(Math.pow(2, 256)));
+        }
+        catch (error) {
+          expect(error.code).to.equal('NUMERIC_FAULT');
+          expect(error.fault).to.equal('overflow');
+        }
+      });
+
+      it("Vote & Event - Should a registered voter to vote once and emit Voted event", async () => {
         await votingInstance.addVoter(voter1.address);
         await votingInstance.connect(owner).startProposalsRegistering();
         await votingInstance.connect(owner).endProposalsRegistering();
@@ -219,7 +228,7 @@ describe("Voting", () => {
       });
     });
 
-    describe('Workflow startVotingSession/endVotingSession', () => {
+    context('Workflow startVotingSession/endVotingSession', () => {
       it("Require - startVotingSession - Should revert when called from not owner", async () => {
         await expect(votingInstance.connect(voter1).startVotingSession()).to.revertedWith('Ownable: caller is not the owner');
       });
@@ -254,7 +263,7 @@ describe("Voting", () => {
 
   });
 
-  describe("Tally votes", () => {
+  context("Tally votes", () => {
     it("Require - Should not allow to tallyVote when caller is not owner", async () => {
       await expect(votingInstance.connect(voter1).tallyVotes()).to.be.revertedWith('Ownable: caller is not the owner');
     });
@@ -267,7 +276,7 @@ describe("Voting", () => {
       await expect(votingInstance.connect(owner).tallyVotes()).to.be.revertedWith('Current status is not voting session ended');
     });
 
-    it("Event - Tally - winningProposalID should stay at default value 0 when there are no votes and emit tally event", async () => {
+    it("Event - Tally - winningProposalID should stay at default value 0 when there are no votes and sill emit VotesTallied status change event", async () => {
       await votingInstance.connect(owner).startProposalsRegistering();
       await votingInstance.connect(owner).endProposalsRegistering();
       await votingInstance.connect(owner).startVotingSession();
@@ -279,7 +288,7 @@ describe("Voting", () => {
       expect(receipt).to.emit(votingInstance, 'WorkflowStatusChange').withArgs({previousStatus: BigNumber.from(4), newStatus: BigNumber.from(5)});
     });
 
-    it("Event - Tally - winningProposalID should be set to winning proposal", async () => {
+    it("Event - Tally - winningProposalID should be set to winning proposal and emit VotesTallied status change event", async () => {
       await votingInstance.connect(owner).addVoter(owner.address);  
       await votingInstance.connect(owner).addVoter(voter1.address);  
       await votingInstance.connect(owner).addVoter(voter2.address);
