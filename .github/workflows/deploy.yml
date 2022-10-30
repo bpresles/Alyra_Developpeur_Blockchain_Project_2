@@ -1,4 +1,4 @@
-name: Deployment
+name: Deploy
 on:
   push:
     branches: [main]
@@ -17,10 +17,9 @@ jobs:
           node-version: '16.x'
       - run: npm install
         shell: bash
-      - run: cp .env.ci .env
-        shell: bash
-      - name: Create local node and deploy
-        env: 
+      - name: Create .env file
+        uses: ozaytsev86/create-env-file@v1
+        with:
           MNEMONIC: ${{ secrets.MNEMONIC }}
         run: |
           npm run dev &

@@ -17,11 +17,11 @@ jobs:
           node-version: '16.x'
       - run: npm install
         shell: bash
-      - name: Run Tests
-        env: 
+      - name: Create .env file
+        uses: ozaytsev86/create-env-file@v1
+        with:
           MNEMONIC: ${{ secrets.MNEMONIC }}
+      - name: Run Tests
         run: npm run test
       - name: Run Coverage
-        env: 
-          MNEMONIC: ${{ secrets.MNEMONIC }}
         run: npm run coverage

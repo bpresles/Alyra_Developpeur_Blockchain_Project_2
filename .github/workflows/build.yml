@@ -1,4 +1,4 @@
-name: Deployment
+name: Build
 on:
   push:
     branches: [main]
@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: '16.x'
       - run: npm install
-        shell: bash
-      - run: cp .env.ci .env
         shell: bash
       - name: Build smart contract
         run: |
