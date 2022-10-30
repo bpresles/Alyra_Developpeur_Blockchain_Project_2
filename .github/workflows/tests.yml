@@ -17,6 +17,8 @@ jobs:
           node-version: '16.x'
       - run: npm install
         shell: bash
+      - run: cp .env.ci .env
+        shell: bash
       - name: Run Tests
         run: npx hardhat test
       - name: Run Coverage
