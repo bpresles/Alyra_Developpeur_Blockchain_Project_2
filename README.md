@@ -141,52 +141,54 @@ In each category, the tests are covering the following elements:
   Voting
     Voters registration
       addVoter
-        ✓ Require - Should not allow adding voter if not owner
-        ✓ Require - Should not allow registering existing voter
-        ✓ Require - Should not allow registering voter if workflow status is not RegisteringVoters
-        ✓ Event - Should allow adding not registered voter by owner
+        ✔ Require - Should not allow adding voter if not owner (47ms)
+        ✔ Require - Should not allow registering existing voter (52ms)
+        ✔ Require - Should not allow registering voter if workflow status is not RegisteringVoters (41ms)
+        ✔ Event - Should allow adding not registered voter by owner
     Proposals
       getOneProposal
-        ✓ Require - Should not allow to get one proposal information when caller is not voter
-        ✓ getVoter - Should return the proposal information when called by a voter
+        ✔ Require - Should not allow to get one proposal information when caller is not voter
+        ✔ getVoter - Should return the proposal information when called by a voter (73ms)
       addProposal/getOneProposal
-        ✓ Require - addProposal - Should not allow to add proposal to not registered voters
-        ✓ Require - addProposal - Should not allow adding proposal if workflow status is not ProposalsRegistrationStarted
-        ✓ Require - addProposal - Should not allow empty proposal
-        ✓ Event - addProposal - Should emit ProposalRegistered on successful proposal
-        ✓ addProposal - Should add proposal when the caller is a registered voter
-        ✓ getOneProposal - Should revert on overflow argument value
+        ✔ Require - addProposal - Should not allow to add proposal to not registered voters
+        ✔ Require - addProposal - Should not allow adding proposal if workflow status is not ProposalsRegistrationStarted (39ms)
+        ✔ Require - addProposal - Should not allow empty proposal (62ms)
+        ✔ Event - addProposal - Should emit ProposalRegistered on successful proposal (56ms)
+        ✔ addProposal - Should add proposal when the caller is a registered voter (58ms)
+        ✔ getOneProposal - Should revert on overflow argument value
       Workflow startProposalsRegistering/endProposalsRegistering
-        ✓ Require - startProposalsRegistering - Should revert when called from not owner
-        ✓ Require - startProposalsRegistering - Should emit WorkflowStatusChange with status 1
-        ✓ Require - startProposalsRegistering - Should not allow starting proposal registering when not in correct state
-        ✓ Require - endProposalsRegistering - Should revert when called from not owner
-        ✓ Require - endProposalsRegistering - Should not allow ending proposal registering when not started yet
-        ✓ Event - endProposalsRegistering - Should emit WorkflowStatusChange with status change from 1 to 2
+        ✔ Require - startProposalsRegistering - Should revert when called from not owner
+        ✔ Require - startProposalsRegistering - Should emit WorkflowStatusChange with status 1
+        ✔ Require - startProposalsRegistering - Should not allow starting proposal registering when not in correct state
+        ✔ Require - endProposalsRegistering - Should revert when called from not owner
+        ✔ Require - endProposalsRegistering - Should not allow ending proposal registering when not started yet
+        ✔ Event - endProposalsRegistering - Should emit WorkflowStatusChange with status change from 1 to 2
     Votes
       getVoter
-        ✓ Require - Should not allow to get voter information when caller is not voter
-        ✓ getVoter - Should return the voter information when called by a voter
+        ✔ Require - Should not allow to get voter information when caller is not voter
+        ✔ getVoter - Should return the voter information when called by a voter
       setVote
-        ✓ Require - Should not allow to vote when caller is not voter
-        ✓ Require - Should not allow to vote voting session has not started
-        ✓ Require - Should not allow to vote twice
-        ✓ Require - Should not allow vote on nonexisting proposal
-        ✓ Vote & Event - Should a registered voter to vote once and emit Voted event
+        ✔ Require - Should not allow to vote when caller is not voter
+        ✔ Require - Should not allow to vote voting session has not started (71ms)
+        ✔ Require - Should not allow to vote twice (120ms)
+        ✔ Require - Should not allow vote on nonexisting proposal (92ms)
+        ✔ Arguments - Should revert on overflow argument value
+        ✔ Vote & Event - Should a registered voter to vote once and emit Voted event (101ms)
       Workflow startVotingSession/endVotingSession
-        ✓ Require - startVotingSession - Should revert when called from not owner
-        ✓ Require - startVotingSession - Should emit WorkflowStatusChange with status from 2 to 3
-        ✓ Require - startVotingSession - Should not allow ending proposal registering when not started yet
-        ✓ Require - endVotingSession - Should revert when called from not owner
-        ✓ Require - endVotingSession - Should not allow ending proposal registering when not started yet
-        ✓ Event - endVotingSession - Should emit WorkflowStatusChange with status from 3 to 4
+        ✔ Require - startVotingSession - Should revert when called from not owner
+        ✔ Require - startVotingSession - Should emit WorkflowStatusChange with status from 2 to 3 (53ms)
+        ✔ Require - startVotingSession - Should not allow ending proposal registering when not started yet
+        ✔ Require - endVotingSession - Should revert when called from not owner
+        ✔ Require - endVotingSession - Should not allow ending proposal registering when not started yet
+        ✔ Event - endVotingSession - Should emit WorkflowStatusChange with status from 3 to 4 (72ms)
     Tally votes
-      ✓ Require - Should not allow to tallyVote when caller is not owner
-      ✓ Require - Should not allow to tally vote when voting session is not ended
-      ✓ Event - Tally - winningProposalID should stay at default value 0 when there are no votes and emit tally event
-      ✓ Event - Tally - winningProposalID should be set to winning proposal
+      ✔ Require - Should not allow to tallyVote when caller is not owner
+      ✔ Require - Should not allow to tally vote when voting session is not ended (70ms)
+      ✔ Event - Tally - winningProposalID should stay at default value 0 when there are no votes and sill emit VotesTallied status change event (99ms)
+      ✔ Event - Tally - winningProposalID should be set to winning proposal and emit VotesTallied status change event (272ms)
 
-  35 passing (3s)
+
+  36 passing (3s)
 ```
 
 <a href="gas-consumption"></a>
@@ -198,11 +200,11 @@ In each category, the tests are covering the following elements:
 ···········································|····························|·············|······························
 |  Methods                                                                                                          │
 ·············|·····························|··············|·············|·············|···············|··············
-|  Contract  ·  Method                     ·  Min         ·  Max        ·  Avg        ·  # calls      ·  eur (avg)  │
+|  Contract  ·  Method                     ·  Min         ·  Max        ·  Avg        ·  # calls      ·  usd (avg)  │
 ·············|·····························|··············|·············|·············|···············|··············
 |  Voting    ·  addProposal                ·           -  ·          -  ·      59280  ·            7  ·          -  │
 ·············|·····························|··············|·············|·············|···············|··············
-|  Voting    ·  addVoter                   ·       50208  ·      50220  ·      50219  ·           17  ·          -  │
+|  Voting    ·  addVoter                   ·       50208  ·      50220  ·      50219  ·           18  ·          -  │
 ·············|·····························|··············|·············|·············|···············|··············
 |  Voting    ·  endProposalsRegistering    ·           -  ·          -  ·      30599  ·           11  ·          -  │
 ·············|·····························|··············|·············|·············|···············|··············
