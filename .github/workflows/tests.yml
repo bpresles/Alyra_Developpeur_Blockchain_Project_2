@@ -17,8 +17,11 @@ jobs:
           node-version: '16.x'
       - run: npm install
         shell: bash
-      - name: Create .env file
-        uses: ozaytsev86/create-env-file@v1
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo MNEMONIC=${{ secrets.INPUT_ENV_MNEMONIC }} >> .env
+          cat .env
       - name: Run Tests
         run: npm run test
       - name: Run Coverage
