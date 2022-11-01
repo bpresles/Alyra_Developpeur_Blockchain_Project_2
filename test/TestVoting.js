@@ -11,12 +11,18 @@ context("Voting", () => {
     let voter2;
     let votingInstance;
 
+  /**
+   * We use a distinct instance of voting contract before each tests to avoid side effects.
+   */
   beforeEach(async () => {
     [owner, voter1, voter2] = await ethers.getSigners();
     const Voting = await ethers.getContractFactory("Voting");
     votingInstance = await Voting.connect(owner).deploy();
   });
 
+  /**
+   * Tests on voters registrations.
+   */
   context("Voters registration", () => {
     context('addVoter', () => {
       it("Require - Should not allow adding voter if not owner", async () => {
@@ -44,6 +50,9 @@ context("Voting", () => {
 
   });
 
+  /**
+   * Tests on proposals management.
+   */
   context("Proposals", () => {
     context('getOneProposal', () => {
       it("Require - Should not allow to get one proposal information when caller is not voter", async () => {
@@ -142,6 +151,9 @@ context("Voting", () => {
 
   });
 
+  /**
+   * Tests on voting session.
+   */
   context("Votes", () => {
 
     context('getVoter', () => {
@@ -263,6 +275,9 @@ context("Voting", () => {
 
   });
 
+  /**
+   * Tests on votes counting process.
+   */
   context("Tally votes", () => {
     it("Require - Should not allow to tallyVote when caller is not owner", async () => {
       await expect(votingInstance.connect(voter1).tallyVotes()).to.be.revertedWith('Ownable: caller is not the owner');
