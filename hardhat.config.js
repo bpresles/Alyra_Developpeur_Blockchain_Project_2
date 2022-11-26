@@ -9,11 +9,13 @@ module.exports = {
     version: '0.8.17',
   },
   networks: {
-    hardhat: {
+    dev: {
       accounts: {
         count: 10,
         mnemonic: `${process.env.MNEMONIC}`,
       },
+      url: 'http://localhost:8545',
+      chainId: 31337,
     },
     goerli: {
       accounts: {
